@@ -3,13 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.WallpaperListFragment">
+    tools:context=".screens.home.WallpaperListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:text="Wallpaper List Fragment"-->
+    <!--        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Wallpaper List Fragment"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

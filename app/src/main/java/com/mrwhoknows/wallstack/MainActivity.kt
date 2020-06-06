@@ -16,5 +16,10 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(bottomNavBar, navHostFragment.findNavController())
 
+        bottomNavBar.setOnNavigationItemReselectedListener {
+            when(it.itemId){
+                R.id.wallpaperListFragment -> onResume()
+            }
+        }
     }
 }

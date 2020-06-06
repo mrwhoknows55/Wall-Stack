@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/wallpaperListFragment"
-        android:name="com.mrwhoknows.wallstack.ui.WallpaperListFragment"
+        android:name="com.mrwhoknows.wallstack.screens.home.WallpaperListFragment"
         android:label="fragment_wallpaper_list"
         tools:layout="@layout/fragment_wallpaper_list" >
         <action
@@ -15,16 +15,28 @@
             app:destination="@id/favWallpaperListFragment" />
         <action
             android:id="@+id/action_wallpaperListFragment_to_wallpaperCategoryListFragment"
-            app:destination="@id/wallpaperCategoryListFragment" />
+            app:destination="@id/wallpaperCategoryListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/favWallpaperListFragment"
-        android:name="com.mrwhoknows.wallstack.ui.FavWallpaperListFragment"
+        android:name="com.mrwhoknows.wallstack.screens.fav.FavWallpaperListFragment"
         android:label="fragment_fav_wallpaper_list"
-        tools:layout="@layout/fragment_fav_wallpaper_list" />
+        tools:layout="@layout/fragment_fav_wallpaper_list" >
+        <action
+            android:id="@+id/action_favWallpaperListFragment_to_navigation"
+            app:popUpTo="@id/navigation" />
+    </fragment>
     <fragment
         android:id="@+id/wallpaperCategoryListFragment"
-        android:name="com.mrwhoknows.wallstack.ui.WallpaperCategoryListFragment"
+        android:name="com.mrwhoknows.wallstack.screens.category.WallpaperCategoryListFragment"
         android:label="fragment_wallpaper_category_list"
-        tools:layout="@layout/fragment_wallpaper_category_list" />
+        tools:layout="@layout/fragment_wallpaper_category_list" >
+        <action
+            android:id="@+id/action_wallpaperCategoryListFragment_to_navigation"
+            app:popUpTo="@id/navigation" />
+    </fragment>
 </navigation>
