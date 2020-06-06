@@ -52,7 +52,6 @@ class WallpaperListFragment : Fragment(), WallpaperAdapter.WallpaperListener {
         val dataListObserver = Observer<List<Wallpaper.Data>> { wallpaperURIList ->
             //update ui
             if (viewModel.isSuccessful && viewModel.dataList.value?.size!! > 0) {
-                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
                 initRecyclerView(wallpaperURIList)
             } else {
                 Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show()
