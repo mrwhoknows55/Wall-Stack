@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.adapter.WallpaperAdapter
@@ -19,7 +21,7 @@ import kotlin.math.log
 
 private const val TAG = "HomeFragment"
 
-class WallpaperListFragment : Fragment() {
+class WallpaperListFragment : Fragment(), WallpaperAdapter.WallpaperListener {
 
     private lateinit var viewModel: WallpaperListViewModel
     private lateinit var wallpaperAdapter: WallpaperAdapter
@@ -31,7 +33,7 @@ class WallpaperListFragment : Fragment() {
         // Inflate the layout for this fragment
 
         Log.i(TAG, "onCreateView: called")
-        
+
         Log.i(TAG, "onCreateView: viewModelCalled")
         viewModel = ViewModelProviders.of(this).get(WallpaperListViewModel::class.java)
 
@@ -42,11 +44,9 @@ class WallpaperListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         Log.i(TAG, "onViewCreated: called")
-        
+
         if (viewModel.dataList.value.isNullOrEmpty()) {
             viewModel.getWall()
-        } else {
-            wallpaperAdapter.notifyDataSetChanged()
         }
 
         val dataListObserver = Observer<List<Wallpaper.Data>> { wallpaperURIList ->
@@ -54,7 +54,6 @@ class WallpaperListFragment : Fragment() {
             if (viewModel.isSuccessful && viewModel.dataList.value?.size!! > 0) {
                 Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
                 initRecyclerView(wallpaperURIList)
-                wallpaperAdapter.notifyDataSetChanged()
             } else {
                 Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show()
             }
@@ -65,7 +64,7 @@ class WallpaperListFragment : Fragment() {
 
     private fun initRecyclerView(dataList: List<Wallpaper.Data>) {
         recyclerView.layoutManager = GridLayoutManager(activity, 2)
-        wallpaperAdapter = WallpaperAdapter(dataList)
+        wallpaperAdapter = WallpaperAdapter(dataList, this)
         recyclerView.adapter = wallpaperAdapter
     }
 
@@ -77,5 +76,15 @@ class WallpaperListFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         Log.i(TAG, "onPause: called")
+    }
+
+    override fun onWallpaperClick(position: Int) {
+        Log.i(TAG, "onWallpaperClick: called")
+        this.findNavController()
+            .navigate(
+                WallpaperListFragmentDirections.actionWallpaperListFragmentToWallpaperFragment(
+                    viewModel.dataList.value?.get(position)!!.path
+                )
+            )
     }
 }

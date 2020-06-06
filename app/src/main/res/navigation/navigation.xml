@@ -20,6 +20,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_wallpaperListFragment_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment" />
     </fragment>
     <fragment
         android:id="@+id/favWallpaperListFragment"
@@ -29,6 +32,9 @@
         <action
             android:id="@+id/action_favWallpaperListFragment_to_navigation"
             app:popUpTo="@id/navigation" />
+        <action
+            android:id="@+id/action_favWallpaperListFragment_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment" />
     </fragment>
     <fragment
         android:id="@+id/wallpaperCategoryListFragment"
@@ -38,5 +44,19 @@
         <action
             android:id="@+id/action_wallpaperCategoryListFragment_to_navigation"
             app:popUpTo="@id/navigation" />
+        <action
+            android:id="@+id/action_wallpaperCategoryListFragment_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wallpaperFragment"
+        android:name="com.mrwhoknows.wallstack.screens.wallpaper.WallpaperFragment"
+        android:label="WallpaperFragment" >
+        <action
+            android:id="@+id/action_wallpaperFragment_to_navigation"
+            app:popUpTo="@id/navigation" />
+        <argument
+            android:name="wallpaperURL"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -9,7 +9,7 @@
     app:cardElevation="8dp">
 
     <ImageView
-        android:id="@+id/wallpaperImageView"
+        android:id="@+id/wallpaperItemImageView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"

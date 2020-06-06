@@ -15,15 +15,23 @@ import com.bumptech.glide.request.target.Target
 import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.model.Wallpaper
 
-class WallpaperAdapter(private val wallpapers: List<Wallpaper.Data>) :
+class WallpaperAdapter(
+    private val wallpapers: List<Wallpaper.Data>,
+    private val mWallpaperListener: WallpaperListener
+) :
     RecyclerView.Adapter<WallpaperAdapter.WallpaperHolder>() {
 
-    class WallpaperHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
+    class WallpaperHolder(itemview: View, private val wallpaperListener: WallpaperListener) :
+        RecyclerView.ViewHolder(itemview), View.OnClickListener {
 
-        private val wallpaperImageView: ImageView = itemview.findViewById(R.id.wallpaperImageView)
+        private val wallpaperImageView: ImageView =
+            itemview.findViewById(R.id.wallpaperItemImageView)
         private val bar: ProgressBar = itemview.findViewById(R.id.bar)
 
         fun bind(data: Wallpaper.Data) {
+
+            itemView.setOnClickListener(this)
+
             Glide.with(itemView.context)
                 .load(data.thumbs.original)
                 .listener(object : RequestListener<Drawable> {
@@ -52,11 +60,16 @@ class WallpaperAdapter(private val wallpapers: List<Wallpaper.Data>) :
                 .into(wallpaperImageView)
         }
 
+        override fun onClick(v: View?) {
+            wallpaperListener.onWallpaperClick(adapterPosition)
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallpaperHolder {
         return WallpaperHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.wallpaper_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.wallpaper_item, parent, false),
+            mWallpaperListener
         )
     }
 
@@ -70,6 +83,11 @@ class WallpaperAdapter(private val wallpapers: List<Wallpaper.Data>) :
                 holder.bind(wallpapers[position])
             }
         }
+    }
+
+
+    interface WallpaperListener {
+        fun onWallpaperClick(position: Int)
     }
 
 }
