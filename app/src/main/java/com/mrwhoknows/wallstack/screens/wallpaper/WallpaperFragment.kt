@@ -83,7 +83,7 @@ class WallpaperFragment : Fragment() {
     }
 
 
-    fun setWallpaper() {
+    private fun setWallpaper() {
         try {
             wallpaperImageView.invalidate()
             val drawable = wallpaperImageView.drawable as BitmapDrawable

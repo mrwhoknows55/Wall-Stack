@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.adapter.CategoryListAdapter
@@ -76,6 +77,12 @@ class WallpaperCategoryListFragment : Fragment(), CategoryListAdapter.CategoryLi
 
     override fun onCategoryClick(position: Int) {
         Log.i(TAG, "onCategoryClick: $position")
+        this.findNavController()
+            .navigate(
+                WallpaperCategoryListFragmentDirections.actionWallpaperCategoryListFragmentToCategoryWallpapers(
+                    categories[position].categoryName
+                )
+            )
     }
 
 }

@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_wallpaperCategoryListFragment_to_wallpaperFragment"
             app:destination="@id/wallpaperFragment" />
+        <action
+            android:id="@+id/action_wallpaperCategoryListFragment_to_categoryWallpapers"
+            app:destination="@id/categoryWallpapers" />
     </fragment>
     <fragment
         android:id="@+id/wallpaperFragment"
@@ -58,5 +61,20 @@
         <argument
             android:name="wallpaperURL"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryWallpapers"
+        android:name="com.mrwhoknows.wallstack.screens.category.CategoryWallpapers"
+        android:label="fragment_wallpapers_in_category"
+        tools:layout="@layout/fragment_wallpapers_in_category" >
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_categoryWallpapers_to_navigation"
+            app:popUpTo="@id/navigation" />
+        <action
+            android:id="@+id/action_categoryWallpapers_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment" />
     </fragment>
 </navigation>
