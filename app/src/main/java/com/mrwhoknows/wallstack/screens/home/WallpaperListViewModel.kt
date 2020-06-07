@@ -33,7 +33,9 @@ class WallpaperListViewModel : ViewModel() {
                 try {
                     if (response.isSuccessful) {
                         Log.i(TAG, "getWallpapers: success")
+
                         _dataList.value = response.body()!!.data
+
                         if (_dataList.value?.size!! > 0) isSuccessful = true
                     } else {
                         Log.e(TAG, "getWallpapers: Error")
