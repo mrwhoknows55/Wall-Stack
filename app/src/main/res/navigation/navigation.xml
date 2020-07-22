@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/wallpaperListFragment"
-        android:name="com.mrwhoknows.wallstack.ui.WallpaperListFragment"
+        android:name="com.mrwhoknows.wallstack.screens.home.WallpaperListFragment"
         android:label="fragment_wallpaper_list"
         tools:layout="@layout/fragment_wallpaper_list" >
         <action
@@ -15,16 +15,66 @@
             app:destination="@id/favWallpaperListFragment" />
         <action
             android:id="@+id/action_wallpaperListFragment_to_wallpaperCategoryListFragment"
-            app:destination="@id/wallpaperCategoryListFragment" />
+            app:destination="@id/wallpaperCategoryListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_wallpaperListFragment_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment" />
     </fragment>
     <fragment
         android:id="@+id/favWallpaperListFragment"
-        android:name="com.mrwhoknows.wallstack.ui.FavWallpaperListFragment"
+        android:name="com.mrwhoknows.wallstack.screens.fav.FavWallpaperListFragment"
         android:label="fragment_fav_wallpaper_list"
-        tools:layout="@layout/fragment_fav_wallpaper_list" />
+        tools:layout="@layout/fragment_fav_wallpaper_list" >
+        <action
+            android:id="@+id/action_favWallpaperListFragment_to_navigation"
+            app:popUpTo="@id/navigation" />
+        <action
+            android:id="@+id/action_favWallpaperListFragment_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment" />
+    </fragment>
     <fragment
         android:id="@+id/wallpaperCategoryListFragment"
-        android:name="com.mrwhoknows.wallstack.ui.WallpaperCategoryListFragment"
+        android:name="com.mrwhoknows.wallstack.screens.category.WallpaperCategoryListFragment"
         android:label="fragment_wallpaper_category_list"
-        tools:layout="@layout/fragment_wallpaper_category_list" />
+        tools:layout="@layout/fragment_wallpaper_category_list" >
+        <action
+            android:id="@+id/action_wallpaperCategoryListFragment_to_navigation"
+            app:popUpTo="@id/navigation" />
+        <action
+            android:id="@+id/action_wallpaperCategoryListFragment_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment" />
+        <action
+            android:id="@+id/action_wallpaperCategoryListFragment_to_categoryWallpapers"
+            app:destination="@id/categoryWallpapers" />
+    </fragment>
+    <fragment
+        android:id="@+id/wallpaperFragment"
+        android:name="com.mrwhoknows.wallstack.screens.wallpaper.WallpaperFragment"
+        android:label="WallpaperFragment" >
+        <action
+            android:id="@+id/action_wallpaperFragment_to_navigation"
+            app:popUpTo="@id/navigation" />
+        <argument
+            android:name="wallpaperURL"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryWallpapers"
+        android:name="com.mrwhoknows.wallstack.screens.category.CategoryWallpapers"
+        android:label="fragment_wallpapers_in_category"
+        tools:layout="@layout/fragment_wallpapers_in_category" >
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_categoryWallpapers_to_navigation"
+            app:popUpTo="@id/navigation" />
+        <action
+            android:id="@+id/action_categoryWallpapers_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment" />
+    </fragment>
 </navigation>
