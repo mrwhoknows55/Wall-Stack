@@ -5,7 +5,6 @@ import com.mrwhoknows.wallstack.api.WallpaperAPI
 import com.mrwhoknows.wallstack.model.Wallpaper
 import retrofit2.HttpException
 import java.io.IOException
-import java.lang.Exception
 
 private const val WALLPAPER_STARTING_PAGE_INDEX = 1
 
@@ -19,7 +18,7 @@ class WallpaperPagingSource(
 
 //        TODO: find out these from model class & structure it like
         return try {
-            val response = wallpaperAPI.getWallpaper(query, pos)
+            val response = wallpaperAPI.getWallpaper(page = 1)
             val walls = response.body()
             val data = walls?.data
 

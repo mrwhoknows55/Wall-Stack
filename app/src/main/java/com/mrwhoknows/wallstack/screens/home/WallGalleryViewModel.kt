@@ -7,7 +7,6 @@ import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.mrwhoknows.wallstack.data.WallpaperRepository
-import kotlinx.coroutines.coroutineScope
 
 private const val TAG = "WallGalleryViewModel"
 
@@ -17,16 +16,15 @@ class WallGalleryViewModel @ViewModelInject constructor(
 
     private val currentQuery = MutableLiveData(DEFAULT_QUERY)
 
-
     val wallpapers = currentQuery.switchMap { queryString ->
         repository.getSearchResult(queryString).cachedIn(viewModelScope)
     }
 
-    fun searWallpapers(query: String) {
+    fun searchWallpapers(query: String) {
         currentQuery.value = query
     }
 
     companion object {
-        private const val DEFAULT_QUERY = "wallpapers"
+        private const val DEFAULT_QUERY = "Wallpapers"
     }
 }
