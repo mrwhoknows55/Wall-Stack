@@ -14,4 +14,14 @@ interface WallpaperAPI {
         @Query("resolutions")
         resolution: String = "1080x1920,2160x3840"
     ): Response<Wallpaper>
+
+    @GET("api/v1/search?sorting=random")
+    suspend fun getWallpaper(
+        @Query("q")
+        query: String = "-Anime",
+        @Query("page")
+        page: Int = 1,
+        @Query("resolutions")
+        resolution: String = "1080x1920,2160x3840"
+    ): Response<Wallpaper>
 }

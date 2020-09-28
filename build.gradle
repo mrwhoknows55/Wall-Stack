@@ -7,7 +7,7 @@ buildscript {
         glide_version = '4.11.0'
         hiltVersion = '2.28.3-alpha'
         hiltAndroidXVersion = '1.0.0-alpha02'
-        pagingVersion = '3.0.0-alpha05'
+        pagingVersion = '3.0.0-alpha06'
     }
     
     repositories {
