@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/wallpaperListFragment">
+    app:startDestination="@id/wallGalleryFragment">
 
     <fragment
         android:id="@+id/wallpaperListFragment"
@@ -77,4 +77,8 @@
             android:id="@+id/action_categoryWallpapers_to_wallpaperFragment"
             app:destination="@id/wallpaperFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/wallGalleryFragment"
+        android:name="com.mrwhoknows.wallstack.screens.home.WallGalleryFragment"
+        android:label="WallGalleryFragment" />
 </navigation>

@@ -7,7 +7,7 @@
         android:title="Category" />
 
     <item
-        android:id="@+id/wallpaperListFragment"
+        android:id="@+id/wallGalleryFragment"
         android:icon="@drawable/ic_home"
         android:title="Home" />
 
