@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Wall Stack</string>
     <string name="retry">Retry</string>
+    <string name="error_no_wallpapers">No Wallpapers Available</string>
 </resources>
