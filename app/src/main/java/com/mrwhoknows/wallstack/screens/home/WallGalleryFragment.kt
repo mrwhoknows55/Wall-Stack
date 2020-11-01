@@ -14,6 +14,9 @@ import com.mrwhoknows.wallstack.adapter.WallpaperLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_wallpaper_list.*
 
+//  TODO: Move View Model to activity and access it from there so so wallpaper list will not refresh
+//  after switching tabs
+
 @AndroidEntryPoint
 class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list) {
 
