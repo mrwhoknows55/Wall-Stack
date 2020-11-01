@@ -6,25 +6,6 @@
     app:startDestination="@id/wallGalleryFragment">
 
     <fragment
-        android:id="@+id/wallpaperListFragment"
-        android:name="com.mrwhoknows.wallstack.screens.home.WallpaperListFragment"
-        android:label="fragment_wallpaper_list"
-        tools:layout="@layout/fragment_wallpaper_list" >
-        <action
-            android:id="@+id/action_wallpaperListFragment_to_favWallpaperListFragment"
-            app:destination="@id/favWallpaperListFragment" />
-        <action
-            android:id="@+id/action_wallpaperListFragment_to_wallpaperCategoryListFragment"
-            app:destination="@id/wallpaperCategoryListFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_wallpaperListFragment_to_wallpaperFragment"
-            app:destination="@id/wallpaperFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/favWallpaperListFragment"
         android:name="com.mrwhoknows.wallstack.screens.fav.FavWallpaperListFragment"
         android:label="fragment_fav_wallpaper_list"
@@ -34,7 +15,11 @@
             app:popUpTo="@id/navigation" />
         <action
             android:id="@+id/action_favWallpaperListFragment_to_wallpaperFragment"
-            app:destination="@id/wallpaperFragment" />
+            app:destination="@id/wallpaperFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/wallpaperCategoryListFragment"
@@ -46,10 +31,18 @@
             app:popUpTo="@id/navigation" />
         <action
             android:id="@+id/action_wallpaperCategoryListFragment_to_wallpaperFragment"
-            app:destination="@id/wallpaperFragment" />
+            app:destination="@id/wallpaperFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_wallpaperCategoryListFragment_to_categoryWallpapers"
-            app:destination="@id/categoryWallpapers" />
+            app:destination="@id/categoryWallpapers"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/wallpaperFragment"
@@ -75,10 +68,36 @@
             app:popUpTo="@id/navigation" />
         <action
             android:id="@+id/action_categoryWallpapers_to_wallpaperFragment"
-            app:destination="@id/wallpaperFragment" />
+            app:destination="@id/wallpaperFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/wallGalleryFragment"
         android:name="com.mrwhoknows.wallstack.screens.home.WallGalleryFragment"
-        android:label="WallGalleryFragment" />
+        android:label="WallGalleryFragment" >
+        <action
+            android:id="@+id/action_wallGalleryFragment_to_wallpaperCategoryListFragment"
+            app:destination="@id/wallpaperCategoryListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_wallGalleryFragment_to_favWallpaperListFragment"
+            app:destination="@id/favWallpaperListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_wallGalleryFragment_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 </navigation>

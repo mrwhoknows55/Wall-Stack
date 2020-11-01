@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavBar.setOnNavigationItemReselectedListener {
             when(it.itemId){
-                R.id.wallpaperListFragment -> onResume()
+                R.id.wallGalleryFragment -> onResume()
             }
         }
     }
