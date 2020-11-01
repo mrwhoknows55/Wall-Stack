@@ -16,16 +16,16 @@ import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.model.Wallpaper
 
 class WallpaperAdapter(
-    private val wallpapers: List<Wallpaper.Data>,
-    private val mWallpaperListener: WallpaperListener
+        private val wallpapers: List<Wallpaper.Data>,
+        private val mWallpaperListener: WallpaperListener
 ) :
-    RecyclerView.Adapter<WallpaperAdapter.WallpaperHolder>() {
+        RecyclerView.Adapter<WallpaperAdapter.WallpaperHolder>() {
 
     class WallpaperHolder(itemview: View, private val wallpaperListener: WallpaperListener) :
-        RecyclerView.ViewHolder(itemview), View.OnClickListener {
+            RecyclerView.ViewHolder(itemview), View.OnClickListener {
 
         private val wallpaperImageView: ImageView =
-            itemview.findViewById(R.id.wallpaperItemImageView)
+                itemview.findViewById(R.id.wallpaperItemImageView)
         private val bar: ProgressBar = itemview.findViewById(R.id.bar)
 
         fun bind(data: Wallpaper.Data) {
@@ -33,31 +33,31 @@ class WallpaperAdapter(
             itemView.setOnClickListener(this)
 
             Glide.with(itemView.context)
-                .load(data.thumbs.original)
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        bar.visibility = View.GONE
-                        return false
-                    }
+                    .load(data.thumbs.original)
+                    .listener(object : RequestListener<Drawable> {
+                        override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean
+                        ): Boolean {
+                            bar.visibility = View.GONE
+                            return false
+                        }
 
-                    override fun onResourceReady(
-                        resource: Drawable?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        dataSource: DataSource?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        bar.visibility = View.GONE
-                        return false
-                    }
+                        override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                        ): Boolean {
+                            bar.visibility = View.GONE
+                            return false
+                        }
 
-                })
-                .into(wallpaperImageView)
+                    })
+                    .into(wallpaperImageView)
         }
 
         override fun onClick(v: View?) {
@@ -68,8 +68,8 @@ class WallpaperAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallpaperHolder {
         return WallpaperHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.wallpaper_item, parent, false),
-            mWallpaperListener
+                LayoutInflater.from(parent.context).inflate(R.layout.wallpaper_item, parent, false),
+                mWallpaperListener
         )
     }
 
@@ -78,11 +78,7 @@ class WallpaperAdapter(
     }
 
     override fun onBindViewHolder(holder: WallpaperHolder, position: Int) {
-        when (holder) {
-            is WallpaperHolder -> {
-                holder.bind(wallpapers[position])
-            }
-        }
+        holder.bind(wallpapers[position])
     }
 
 

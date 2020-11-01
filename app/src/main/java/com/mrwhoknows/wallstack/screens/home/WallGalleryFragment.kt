@@ -6,11 +6,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.adapter.WallpaperListAdapter
 import com.mrwhoknows.wallstack.adapter.WallpaperLoadStateAdapter
+import com.mrwhoknows.wallstack.model.Wallpaper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_wallpaper_list.*
 
@@ -18,24 +20,24 @@ import kotlinx.android.synthetic.main.fragment_wallpaper_list.*
 //  after switching tabs
 
 @AndroidEntryPoint
-class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list) {
+class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list), WallpaperListAdapter.OnItemClickListener {
 
     private val viewModel by viewModels<WallGalleryViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = WallpaperListAdapter()
+        val adapter = WallpaperListAdapter(this)
 
         recyclerView.setHasFixedSize(true)
         val layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
-            header = WallpaperLoadStateAdapter { adapter.retry() },
-            footer = WallpaperLoadStateAdapter { adapter.retry() }
+                header = WallpaperLoadStateAdapter { adapter.retry() },
+                footer = WallpaperLoadStateAdapter { adapter.retry() }
         )
 
-        viewModel.wallpapers.observe(viewLifecycleOwner, Observer { wallpapersPage ->
+        viewModel.wallpapers.observe(viewLifecycleOwner, { wallpapersPage ->
             adapter.submitData(viewLifecycleOwner.lifecycle, wallpapersPage)
         })
 
@@ -47,8 +49,8 @@ class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list) {
 
             //    empty view
             if (loadState.source.refresh is LoadState.NotLoading &&
-                loadState.append.endOfPaginationReached &&
-                adapter.itemCount < 1
+                    loadState.append.endOfPaginationReached &&
+                    adapter.itemCount < 1
             ) {
                 recyclerView.isVisible = false
                 errorEmptyTv.isVisible = true
@@ -56,5 +58,13 @@ class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list) {
                 errorEmptyTv.isVisible = false
             }
         }
+    }
+
+    override fun onItemClick(data: Wallpaper.Data) {
+        this.findNavController()
+                .navigate(
+                        WallGalleryFragmentDirections
+                                .actionWallGalleryFragmentToWallpaperFragment(data.path)
+                )
     }
 }

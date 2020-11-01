@@ -34,7 +34,7 @@ class CategoryWallpapers : Fragment(), WallpaperAdapter.WallpaperListener {
         savedInstanceState: Bundle?
     ): View? {
 
-        args = CategoryWallpapersArgs.fromBundle(arguments!!)
+        args = CategoryWallpapersArgs.fromBundle(requireArguments())
 
         return inflater.inflate(R.layout.fragment_wallpapers_in_category, container, false)
     }

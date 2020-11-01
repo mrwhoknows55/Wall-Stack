@@ -16,44 +16,44 @@ import kotlinx.android.synthetic.main.category_item.view.*
 import kotlinx.android.synthetic.main.wallpaper_item.view.*
 
 class CategoryListAdapter(
-    private val categories: List<Category>,
-    private val mCategoryListener: CategoryListener
+        private val categories: List<Category>,
+        private val mCategoryListener: CategoryListener
 ) : RecyclerView.Adapter<CategoryListAdapter.CategoryViewHolder>() {
 
 
     class CategoryViewHolder(itemView: View, private val categoryListener: CategoryListener) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+            RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
 
         fun bind(category: Category) {
             itemView.setOnClickListener(this)
             itemView.categoryNameText.text = category.categoryName
             Glide.with(itemView.context)
-                .load(category.categoryWallLink)
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        itemView.catBar.visibility = View.GONE
-                        return false
-                    }
+                    .load(category.categoryWallLink)
+                    .listener(object : RequestListener<Drawable> {
+                        override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean
+                        ): Boolean {
+                            itemView.catBar.visibility = View.GONE
+                            return false
+                        }
 
-                    override fun onResourceReady(
-                        resource: Drawable?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        dataSource: DataSource?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        itemView.catBar.visibility = View.GONE
-                        return false
-                    }
+                        override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                        ): Boolean {
+                            itemView.catBar.visibility = View.GONE
+                            return false
+                        }
 
-                })
-                .into(itemView.catItemImageView)
+                    })
+                    .into(itemView.catItemImageView)
         }
 
         override fun onClick(v: View?) {
@@ -63,8 +63,8 @@ class CategoryListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false),
-            mCategoryListener
+                LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false),
+                mCategoryListener
         )
     }
 
@@ -73,11 +73,7 @@ class CategoryListAdapter(
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        when (holder) {
-            is CategoryViewHolder -> {
-                holder.bind(categories[position])
-            }
-        }
+        holder.bind(categories[position])
     }
 
     interface CategoryListener {
