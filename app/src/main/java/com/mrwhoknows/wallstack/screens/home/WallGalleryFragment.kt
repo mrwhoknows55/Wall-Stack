@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,7 +19,8 @@ import kotlinx.android.synthetic.main.fragment_wallpaper_list.*
 //  after switching tabs
 
 @AndroidEntryPoint
-class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list), WallpaperListAdapter.OnItemClickListener {
+class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list),
+    WallpaperListAdapter.OnItemClickListener {
 
     private val viewModel by viewModels<WallGalleryViewModel>()
 
@@ -33,8 +33,8 @@ class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list), Wallpape
         val layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
-                header = WallpaperLoadStateAdapter { adapter.retry() },
-                footer = WallpaperLoadStateAdapter { adapter.retry() }
+            header = WallpaperLoadStateAdapter { adapter.retry() },
+            footer = WallpaperLoadStateAdapter { adapter.retry() }
         )
 
         viewModel.wallpapers.observe(viewLifecycleOwner, { wallpapersPage ->
@@ -49,8 +49,8 @@ class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list), Wallpape
 
             //    empty view
             if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached &&
-                    adapter.itemCount < 1
+                loadState.append.endOfPaginationReached &&
+                adapter.itemCount < 1
             ) {
                 recyclerView.isVisible = false
                 errorEmptyTv.isVisible = true
@@ -62,9 +62,9 @@ class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list), Wallpape
 
     override fun onItemClick(data: Wallpaper.Data) {
         this.findNavController()
-                .navigate(
-                        WallGalleryFragmentDirections
-                                .actionWallGalleryFragmentToWallpaperFragment(data.path)
-                )
+            .navigate(
+                WallGalleryFragmentDirections
+                    .actionWallGalleryFragmentToWallpaperFragment(data.path, data.id)
+            )
     }
 }

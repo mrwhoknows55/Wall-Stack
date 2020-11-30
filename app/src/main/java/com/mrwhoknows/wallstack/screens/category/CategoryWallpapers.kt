@@ -84,7 +84,8 @@ class CategoryWallpapers : Fragment(), WallpaperAdapter.WallpaperListener {
         this.findNavController()
             .navigate(
                 CategoryWallpapersDirections.actionCategoryWallpapersToWallpaperFragment(
-                    wallpapers[position].path
+                    wallpapers[position].path,
+                    wallpapers[position].id
                 )
             )
     }
