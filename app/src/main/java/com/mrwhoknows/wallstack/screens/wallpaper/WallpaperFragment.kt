@@ -10,14 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.mrwhoknows.wallstack.R
+import com.mrwhoknows.wallstack.db.FavWall
+import com.mrwhoknows.wallstack.db.FavWallDatabase
 import kotlinx.android.synthetic.main.fragment_wallpaper.*
-import java.lang.Exception
+import kotlinx.coroutines.launch
 
 private const val TAG = "WallpaperFragment"
 
@@ -75,6 +78,16 @@ class WallpaperFragment : Fragment() {
                 }
             })
             .into(wallpaperImageView)
+
+
+//        TODO: do this when clicked on like btn
+        val dao = FavWallDatabase.getInstance(requireContext()).favWallDao()
+        lifecycleScope.launch {
+//            TODO change to id
+            val favWall = FavWall(args.wallpaperURL, args.wallpaperURL)
+            dao.addFavWall(favWall)
+        }
+
     }
 
 

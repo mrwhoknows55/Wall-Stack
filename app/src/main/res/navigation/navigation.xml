@@ -47,12 +47,15 @@
     <fragment
         android:id="@+id/wallpaperFragment"
         android:name="com.mrwhoknows.wallstack.screens.wallpaper.WallpaperFragment"
-        android:label="WallpaperFragment" >
+        android:label="WallpaperFragment">
         <action
             android:id="@+id/action_wallpaperFragment_to_navigation"
             app:popUpTo="@id/navigation" />
         <argument
             android:name="wallpaperURL"
+            app:argType="string" />
+        <argument
+            android:name="wallpaperId"
             app:argType="string" />
     </fragment>
     <fragment

@@ -16,48 +16,70 @@ import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.model.Wallpaper
 
 class WallpaperAdapter(
-        private val wallpapers: List<Wallpaper.Data>,
-        private val mWallpaperListener: WallpaperListener
-) :
-        RecyclerView.Adapter<WallpaperAdapter.WallpaperHolder>() {
+    private val wallpaperListener: WallpaperListener
+) : RecyclerView.Adapter<WallpaperAdapter.WallpaperHolder>() {
+
+    private var wallpapers: List<Wallpaper.Data>
+    private var walls: MutableList<String>
+
+    init {
+        wallpapers = listOf()
+        walls = mutableListOf()
+    }
+
+    constructor(wallpapers: List<Wallpaper.Data>, wallpaperListener: WallpaperListener) : this(
+        wallpaperListener
+    ) {
+        this.wallpapers = wallpapers
+        wallpapers.forEach {
+            this.walls.add(it.thumbs.original)
+        }
+    }
+
+    constructor(wallpaperListener: WallpaperListener, walls: List<String>) : this(
+        wallpaperListener
+    ) {
+        this.walls = walls.toMutableList()
+        this.wallpapers = emptyList()
+    }
 
     class WallpaperHolder(itemview: View, private val wallpaperListener: WallpaperListener) :
-            RecyclerView.ViewHolder(itemview), View.OnClickListener {
+        RecyclerView.ViewHolder(itemview), View.OnClickListener {
 
         private val wallpaperImageView: ImageView =
-                itemview.findViewById(R.id.wallpaperItemImageView)
+            itemview.findViewById(R.id.wallpaperItemImageView)
         private val bar: ProgressBar = itemview.findViewById(R.id.bar)
 
-        fun bind(data: Wallpaper.Data) {
+        fun bind(wallLink: String) {
 
             itemView.setOnClickListener(this)
 
             Glide.with(itemView.context)
-                    .load(data.thumbs.original)
-                    .listener(object : RequestListener<Drawable> {
-                        override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                isFirstResource: Boolean
-                        ): Boolean {
-                            bar.visibility = View.GONE
-                            return false
-                        }
+                .load(wallLink)
+                .listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        bar.visibility = View.GONE
+                        return false
+                    }
 
-                        override fun onResourceReady(
-                                resource: Drawable?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                dataSource: DataSource?,
-                                isFirstResource: Boolean
-                        ): Boolean {
-                            bar.visibility = View.GONE
-                            return false
-                        }
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        bar.visibility = View.GONE
+                        return false
+                    }
 
-                    })
-                    .into(wallpaperImageView)
+                })
+                .into(wallpaperImageView)
         }
 
         override fun onClick(v: View?) {
@@ -68,17 +90,17 @@ class WallpaperAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallpaperHolder {
         return WallpaperHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.wallpaper_item, parent, false),
-                mWallpaperListener
+            LayoutInflater.from(parent.context).inflate(R.layout.wallpaper_item, parent, false),
+            wallpaperListener
         )
     }
 
     override fun getItemCount(): Int {
-        return wallpapers.size
+        return walls.size
     }
 
     override fun onBindViewHolder(holder: WallpaperHolder, position: Int) {
-        holder.bind(wallpapers[position])
+        holder.bind(walls[position])
     }
 
 
