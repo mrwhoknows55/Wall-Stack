@@ -8,8 +8,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.mrwhoknows.wallstack.data.WallpaperRepository
 
-private const val TAG = "WallGalleryViewModel"
-
 class WallGalleryViewModel @ViewModelInject constructor(
     private val repository: WallpaperRepository
 ) : ViewModel() {

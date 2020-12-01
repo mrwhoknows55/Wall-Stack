@@ -13,7 +13,6 @@ import com.bumptech.glide.request.target.Target
 import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.model.Category
 import kotlinx.android.synthetic.main.category_item.view.*
-import kotlinx.android.synthetic.main.wallpaper_item.view.*
 
 class CategoryListAdapter(
         private val categories: List<Category>,
