@@ -4,10 +4,7 @@ import android.app.WallpaperManager
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -22,27 +19,14 @@ import com.mrwhoknows.wallstack.db.FavWallDatabase
 import kotlinx.android.synthetic.main.fragment_wallpaper.*
 import kotlinx.coroutines.launch
 
-private const val TAG = "WallpaperFragment"
-
-class WallpaperFragment : Fragment() {
+class WallpaperFragment : Fragment(R.layout.fragment_wallpaper) {
 
     private lateinit var args: WallpaperFragmentArgs
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        Log.i(TAG, "onCreateView: called")
-
-        args = WallpaperFragmentArgs.fromBundle(requireArguments())
-
-
-        return inflater.inflate(R.layout.fragment_wallpaper, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        args = WallpaperFragmentArgs.fromBundle(requireArguments())
 
         setWallFAB.hide()
         setWallFAB.setOnClickListener {
@@ -63,7 +47,6 @@ class WallpaperFragment : Fragment() {
                     Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
                     return false
                 }
-
 
                 override fun onResourceReady(
                     resource: Drawable?,

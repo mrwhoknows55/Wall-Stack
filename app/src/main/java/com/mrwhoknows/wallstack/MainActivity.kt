@@ -1,12 +1,9 @@
 package com.mrwhoknows.wallstack
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(bottomNavBar, navHostFragment.findNavController())
 
         bottomNavBar.setOnNavigationItemReselectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.wallGalleryFragment -> onResume()
             }
         }
