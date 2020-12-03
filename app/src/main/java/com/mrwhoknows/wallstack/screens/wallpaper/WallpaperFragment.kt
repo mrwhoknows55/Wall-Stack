@@ -13,6 +13,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.mrwhoknows.wallstack.MainActivity
 import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.db.FavWall
 import com.mrwhoknows.wallstack.db.FavWallDatabase
@@ -27,7 +28,8 @@ class WallpaperFragment : Fragment(R.layout.fragment_wallpaper) {
         super.onViewCreated(view, savedInstanceState)
 
         args = WallpaperFragmentArgs.fromBundle(requireArguments())
-
+        val topToolbar = (requireActivity() as MainActivity).topToolbar
+        topToolbar.visibility = View.GONE
         setWallFAB.hide()
         setWallFAB.setOnClickListener {
             setWallpaper()

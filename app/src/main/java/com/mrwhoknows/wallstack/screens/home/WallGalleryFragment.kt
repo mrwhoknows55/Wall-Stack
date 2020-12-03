@@ -25,6 +25,12 @@ class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val topToolbar = (requireActivity() as MainActivity).topToolbar
+        topToolbar.apply {
+            visibility = View.VISIBLE
+            title = this.resources.getString(R.string.app_name)
+        }
+
         viewModel = (requireActivity() as MainActivity).wallgalleryViewModel
 
         val adapter = WallpaperListAdapter(this)

@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mrwhoknows.wallstack.MainActivity
 import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.adapter.WallpaperAdapter
 import com.mrwhoknows.wallstack.db.FavWallDatabase
@@ -24,6 +25,12 @@ class FavWallpaperListFragment : Fragment(R.layout.fragment_fav_wallpaper_list),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val topToolbar = (requireActivity() as MainActivity).topToolbar
+        topToolbar.apply {
+            visibility = View.VISIBLE
+            title = "Favourite Walls"
+        }
 
         val dao = FavWallDatabase.getInstance(requireContext()).favWallDao()
 

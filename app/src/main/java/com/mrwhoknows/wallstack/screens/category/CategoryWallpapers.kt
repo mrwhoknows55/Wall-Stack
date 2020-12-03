@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.mrwhoknows.wallstack.MainActivity
 import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.adapter.WallpaperAdapter
 import com.mrwhoknows.wallstack.api.RetrofitFactory
@@ -35,6 +36,12 @@ class CategoryWallpapers : Fragment(), WallpaperAdapter.WallpaperListener {
     ): View? {
 
         args = CategoryWallpapersArgs.fromBundle(requireArguments())
+
+        val topToolbar = (requireActivity() as MainActivity).topToolbar
+        topToolbar.apply {
+            visibility = View.VISIBLE
+            title = args.categoryName
+        }
 
         return inflater.inflate(R.layout.fragment_wallpapers_in_category, container, false)
     }

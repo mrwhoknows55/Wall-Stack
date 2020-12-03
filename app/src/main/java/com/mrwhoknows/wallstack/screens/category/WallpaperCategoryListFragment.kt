@@ -2,12 +2,13 @@ package com.mrwhoknows.wallstack.screens.category
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mrwhoknows.wallstack.MainActivity
 import com.mrwhoknows.wallstack.R
 import com.mrwhoknows.wallstack.adapter.CategoryListAdapter
 import com.mrwhoknows.wallstack.model.Category
@@ -24,6 +25,12 @@ class WallpaperCategoryListFragment : Fragment(), CategoryListAdapter.CategoryLi
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val topToolbar = (requireActivity() as MainActivity).topToolbar
+        topToolbar.apply {
+            visibility = View.VISIBLE
+            title = "Categories"
+        }
 
         initList()
 
