@@ -31,7 +31,7 @@ class WallGalleryFragment : Fragment(R.layout.fragment_wallpaper_list),
             title = this.resources.getString(R.string.app_name)
         }
 
-        viewModel = (requireActivity() as MainActivity).wallgalleryViewModel
+        viewModel = (requireActivity() as MainActivity).wallGalleryViewModel
 
         val adapter = WallpaperListAdapter(this)
 

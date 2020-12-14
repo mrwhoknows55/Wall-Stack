@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    val wallgalleryViewModel by viewModels<WallGalleryViewModel>()
+    val wallGalleryViewModel by viewModels<WallGalleryViewModel>()
     lateinit var topToolbar: MaterialToolbar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavBar.setOnNavigationItemReselectedListener {
             when (it.itemId) {
                 R.id.wallGalleryFragment -> onResume()
+                R.id.wallpaperCategoryListFragment -> onResume()
+                R.id.favWallpaperListFragment -> onResume()
             }
         }
     }

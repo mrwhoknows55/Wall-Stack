@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#03A9F4</color>
-    <color name="colorPrimaryDark">#01579B</color>
-    <color name="colorAccent">#5E35B1</color>
+
+   <color name="polar_night_darkest">#2E3440</color>
+   <color name="polar_night_darker">#3B4252</color>
+   <color name="polar_night_dark">#434C5E</color>
+   <color name="polar_night">#4C566A</color>
+
+   <color name="snow_storm_darker">#D8DEE9</color>
+   <color name="snow_storm_dark">#E5E9F0</color>
+   <color name="snow_storm">#ECEFF4</color>
+
+   <color name="frost_teal">#8FBCBB</color>
+   <color name="frost_cyan">#88C0D0</color>
+   <color name="frost_water">#81A1C1</color>
+   <color name="frost_sky">#5E81AC</color>
+
+   <color name="aurora_red">#BF616A</color>
+   <color name="aurora_orange">#D08770</color>
+   <color name="aurora_yellow">#EBCB8B</color>
+   <color name="aurora_green">#A3BE8C</color>
+   <color name="aurora_pink">#B48EAD</color>
+
 </resources>
