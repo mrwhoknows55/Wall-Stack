@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   <style name="Theme.WallStack.DayNight" parent="Theme.WallStack" />
+
+   <style name="Theme.WallStack" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+      <item name="colorPrimary">@color/frost_sky</item>
+      <item name="colorPrimaryVariant">@color/frost_cyan</item>
+      <item name="colorSecondary">@color/frost_water</item>
+      <item name="colorSecondaryVariant">@color/frost_teal</item>
+
+      <item name="android:colorBackground">@color/snow_storm</item>
+      <item name="colorSurface">@color/snow_storm</item>
+      <item name="colorError">@color/aurora_red</item>
+
+      <item name="colorOnPrimary">@color/snow_storm</item>
+      <item name="colorOnSecondary">@color/snow_storm</item>
+      <item name="colorOnBackground">@color/polar_night_darkest</item>
+      <item name="colorOnSurface">@color/polar_night_darkest</item>
+      <item name="colorOnError">@color/polar_night_darkest</item>
+   </style>
+
+
+</resources>
